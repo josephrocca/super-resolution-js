@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Image upscaling/super-resolution in the browser (with JS/ONNX)</title>
+    <script src="github-pages-coop-coep-workaround.js"></script>
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.11.0/dist/ort.js"></script>
@@ -19,6 +20,7 @@
       if(self.crossOriginIsolated) { // needs to be cross-origin-isolated to use wasm threads. you need to serve this html file with these two headers: https://web.dev/coop-coep/
         ort.env.wasm.numThreads = navigator.hardwareConcurrency / 2;
       }
+      ort.env.wasm.proxy = true;
       
       if(!window.OffscreenCanvas) alert("Your browser doesn't support OffscreenCanvas - a browser feature that was standardized way back in 2018. Please use a modern browser like Chrome, Edge or Brave.");
       
