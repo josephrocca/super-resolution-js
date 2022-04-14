@@ -27,8 +27,9 @@
       let onnxSession;
       (async function() {
         console.log("Downloading model... (see network tab for progress)");
+        let t = Date.now();
         onnxSession = await ort.InferenceSession.create('https://huggingface.co/rocca/swin-ir-onnx/resolve/main/003_realSR_BSRGAN_DFO_s64w8_SwinIR-M_x4_GAN.onnx', { executionProviders: ["wasm"] });
-        console.log("Model loaded.");
+        console.log(`Model loaded in ${Date.now()-t} ms.`);
         startBtn.disabled = false;
         startBtn.textContent = "start";
       })();
